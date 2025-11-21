@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>My Personal Webpage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
       background-image: url('https://github.com/talbertson0695/Chiefs-Kingdom/blob/main/football-field.png?raw=true');
@@ -22,7 +23,7 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      color: black;
+      color: gold;
       font-weight: bold;
       text-align: center;
       padding: 60px 20px;
@@ -39,6 +40,7 @@
     h1, h2 {
       color: gold;
       text-shadow: 2px 2px 6px black;
+      margin: 0.5rem 0;
     }
 
     p { font-size: 18px; }
@@ -85,13 +87,20 @@
 
     .mycontainer {
       display: flex;
-      justify-content: space-between;
+      gap: 20px;
       flex-wrap: wrap;
       width: 80%;
-      margin: 0 auto;
+      margin: 0 auto 20px;
+      align-items: flex-start;
     }
 
-    .mycontainer div { flex: 1; margin: 10px; }
+    .mycontainer > div {
+      flex: 1 1 280px;
+      background: rgba(0,0,0,0.5);
+      border: 2px solid gold;
+      border-radius: 8px;
+      padding: 12px 16px;
+    }
 
     .video {
       width: 80%;
@@ -106,7 +115,8 @@
     .list-style1, .list-style2 {
       color: gold;
       text-align: left;
-      margin: 20px;
+      margin: 12px 0;
+      padding-left: 20px;
     }
 
     .list-style1 { list-style-type: square; }
@@ -114,22 +124,22 @@
 
     .button-transition {
       display: inline-block;
-      background-color: navy;
-      color: white;
+      background-color: gold;
+      color: black;
       padding: 10px 20px;
-      transition: all 0.3s ease;
       border: none;
       cursor: pointer;
       text-decoration: none;
       border-radius: 4px;
     }
 
-    .button-transition:hover {
-      background-color: gold;
-      color: black;
-      transform: scale(1.05);
+    /* Media elements responsive */
+    video, iframe {
+      max-width: 100%;
+      height: auto;
     }
 
+    /* Chiefs-themed audio button */
     #playButton {
       background-color: #E31837; /* Chiefs red */
       color: #FFB612;           /* Chiefs gold */
@@ -142,7 +152,6 @@
       transition: background-color 0.3s;
       margin-top: 20px;
     }
-
     #playButton:hover { background-color: #B11226; }
   </style>
 </head>
@@ -155,7 +164,7 @@ Name: Trey Albertson
 Age: 30
 Location: Kansas City, MO
     </pre>
-    <a href="test.html" target="_blank" class="button-transition">New Page Link</a>
+    <a href="https://www.espn.com/nfl/team/_/name/kc/kansas-city-chiefs" target="_blank" rel="noopener noreferrer" class="button-transition">ESPN</a>
   </header>
 
   <main>
@@ -202,6 +211,19 @@ Location: Kansas City, MO
           <td>Isiah Pacheco</td><td>8</td><td>78</td><td>329</td><td>4.2</td><td>16</td><td>0</td>
           <td>1</td><td>41.1</td><td>0</td><td>0</td><td>21</td>
         </tr>
+        <!-- New rows added below -->
+        <tr>
+          <td>Rashee Rice</td><td>9</td><td>—</td><td>512</td><td>—</td><td>56</td><td>3</td>
+          <td>4</td><td>56.9</td><td>0</td><td>0</td><td>34</td>
+        </tr>
+        <tr>
+          <td>Marquez Valdes-Scantling</td><td>10</td><td>—</td><td>287</td><td>—</td><td>42</td><td>2</td>
+          <td>2</td><td>28.7</td><td>0</td><td>0</td><td>12</td>
+        </tr>
+        <tr>
+          <td>Kadarius Toney</td><td>7</td><td>—</td><td>198</td><td>—</td><td>33</td><td>1</td>
+          <td>1</td><td>28.3</td><td>0</td><td>0</td><td>9</td>
+        </tr>
       </table>
     </section>
 
@@ -230,8 +252,9 @@ Location: Kansas City, MO
           <li><strong>Made In KC</strong></li>
         </ul>
       </div>
-      <div>
-<hr>
+    </div>
+
+    <hr>
     <section class="video">
       <h2>Travis Kelce WARMING UP!!!</h2>
       <video width="360" height="480" controls>
@@ -240,7 +263,43 @@ Location: Kansas City, MO
       </video>
     </section>
 
-    <section>
+    <section class="video">
       <h2>THE GOAT</h2>
-      <iframe src="https://www.youtube.com/embed/36SPZdmAgTo" width="853" height="480" style="border:none;" title="YouTube video"></iframe>
-	</section>
+      <iframe src="https://www.youtube.com/embed/36SPZdmAgTo" width="853" height="480" style="border:none;" title="YouTube video" allowfullscreen></iframe>
+    </section>
+
+    <hr>
+    <section>
+      <h2>Red Kingdom Anthem</h2>
+      <audio id="redKingdom" preload="auto">
+        <source src="https://talbertson0695.github.io/Chiefs-Kingdom/Tech%20N9ne%20-%20Red%20Kingdom%20%20Official%20Audio.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div>
+        <button id="playButton">▶ Play Red Kingdom</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Chiefs-themed play/pause button for Red Kingdom
+    const audio = document.getElementById('redKingdom');
+    const button = document.getElementById('playButton');
+
+    button.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        button.textContent = '⏸ Pause Red Kingdom';
+      } else {
+        audio.pause();
+        button.textContent = '▶ Play Red Kingdom';
+      }
+    });
+
+    // Reset button text when audio ends
+    audio.addEventListener('ended', () => {
+      button.textContent = '▶ Play Red Kingdom';
+    });
+  </script>
+</body>
+</html>
