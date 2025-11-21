@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>My Personal Webpage</title>
   <style>
     body {
-      background-image: url('https://github.com/talbertson0695/Chiefs-Kingdom/blob/main/football-field.png?raw=true'); /* Football field background */
+      background-image: url('https://github.com/talbertson0695/Chiefs-Kingdom/blob/main/football-field.png?raw=true');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -12,11 +13,12 @@
       font-family: Arial, sans-serif;
       color: yellow;
       text-align: center;
+      margin: 0;
     }
 
     header {
       position: relative;
-      background-image: url('https://github.com/talbertson0695/Chiefs-Kingdom/blob/main/IMG_0482.JPG?raw=true'); /* Header photo */
+      background-image: url('https://github.com/talbertson0695/Chiefs-Kingdom/blob/main/IMG_0482.JPG?raw=true');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -26,7 +28,6 @@
       padding: 60px 20px;
     }
 
-    /* Overlay on header for readability */
     header::before {
       content: "";
       position: absolute;
@@ -39,7 +40,7 @@
 
     h1, h2 {
       color: gold;
-      text-shadow: 2px 2px 6px black; /* shadowed text */
+      text-shadow: 2px 2px 6px black;
     }
 
     p {
@@ -47,23 +48,22 @@
     }
 
     img {
-      width: 360px;
-      height: 180px;
+      max-width: 100%;
+      height: auto;
       border-radius: 50%;
       border: 3px solid gold;
       margin-top: 10px;
     }
 
-    .table-style1, .table-style2 {
-      width: 60%;
+    table {
+      width: 90%;
       margin: 20px auto;
       border-collapse: collapse;
       border: 2px solid gold;
       background: rgba(0,0,0,0.5);
     }
 
-    .table-style1 th, .table-style1 td,
-    .table-style2 th, .table-style2 td {
+    th, td {
       border: 1px solid gold;
       padding: 10px;
       text-align: center;
@@ -80,14 +80,13 @@
       color: gold;
     }
 
-    /* Hover glow on tables */
-    .table-style1 tr:hover, .table-style2 tr:hover {
+    table tr:hover {
       background-color: rgba(255, 215, 0, 0.3);
       transition: background-color 0.3s ease;
     }
 
     .about {
-      width: 60%;
+      width: 80%;
       margin: 20px auto;
       text-align: left;
       background: rgba(0,0,0,0.5);
@@ -96,20 +95,21 @@
     }
 
     .mycontainer {
-      width: 66%;
-      overflow: auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      width: 80%;
       margin: 0 auto;
     }
 
     .mycontainer div {
-      width: 50%;
-      float: left;
-      border: 12px black;
+      flex: 1;
+      margin: 10px;
     }
 
     .video {
-      width: 40%;
-      margin: 10px auto;
+      width: 80%;
+      margin: 20px auto;
       text-align: center;
       border: 3px solid green;
       background: rgba(0,0,0,0.5);
@@ -127,15 +127,17 @@
     .list-style2 { list-style-type: circle; }
 
     .button-transition {
+      display: inline-block;
       background-color: navy;
       color: white;
       padding: 10px 20px;
       transition: all 0.3s ease;
       border: none;
       cursor: pointer;
+      text-decoration: none;
+      border-radius: 4px;
     }
 
-    /* Animated button */
     .button-transition:hover {
       background-color: gold;
       color: black;
@@ -150,85 +152,134 @@
     <pre>
 Name: Trey Albertson
 Age: 30
-Location: Kansas City Mo
+Location: Kansas City, MO
     </pre>
-    <a href="test.html" style="color:black" target="_blank">
-      <button class="button-transition">New Page Link</button>
-    </a>
+    <a href="test.html" target="_blank" class="button-transition">New Page Link</a>
   </header>
 
-  <section class="about">
-    <p>Check Out my Favorite website:
-      <a href="https://www.chiefs.com/thekingdom/" target="_blank">The Kingdom</a>
-    </p>
-    <a href="mailto:t.albertson0695@gmail.com" target="_blank">Contact Me</a>
-    <a href="https://github.com/settings/profile" target="_blank">
-      <img src="https://github.com/talbertson0695/Chiefs-Kingdom/blob/main/IMG_0455.JPG?raw=true" alt="Profile Photo" title="Github Profile">
-    </a>
-  </section>
+  <main>
+    <section class="about">
+      <p>Check out my favorite website:
+        <a href="https://www.chiefs.com/thekingdom/" target="_blank">The Kingdom</a>
+      </p>
+      <p>
+        <a href="mailto:t.albertson0695@gmail.com" target="_blank">Contact Me</a>
+      </p>
+      <a href="https://github.com/settings/profile" target="_blank">
+        <img src="https://github.com/talbertson0695/Chiefs-Kingdom/blob/main/IMG_0455.JPG?raw=true" alt="Trey Albertson profile photo" title="Github Profile">
+      </a>
+    </section>
 
-  <hr>
-  <h2>QB Stats</h2>
-  <table class="table-style1">
-    <tr>
-      <th>Current Quarterback</th>
-      <th>Season YDS CMP% TD INT QBR</th>
-    </tr>
-    <tr>
-      <td>Patrick Mahomes</td>
-      <td>2025, 2625, 64.5, 18, 6, 103.0</td>
-    </tr>
-    <tr>
-      <td>Patrick Mahomes</td>
-      <td>2024, 3928, 67.5, 26, 11, 99.8</td>
-    </tr>
-  </table>
+    <hr>
+    <section>
+      <h2>QB Stats</h2>
+      <table class="table-style1">
+        <tr>
+          <th>Quarterback</th>
+          <th>Season</th>
+          <th>YDS</th>
+          <th>CMP%</th>
+          <th>TD</th>
+          <th>INT</th>
+          <th>QBR</th>
+        </tr>
+        <tr>
+          <td>Patrick Mahomes</td>
+          <td>2025</td>
+          <td>2625</td>
+          <td>64.5%</td>
+          <td>18</td>
+          <td>6</td>
+          <td>103.0</td>
+        </tr>
+        <tr>
+          <td>Patrick Mahomes</td>
+          <td>2024</td>
+          <td>3928</td>
+          <td>67.5%</td>
+          <td>26</td>
+          <td>11</td>
+          <td>99.8</td>
+        </tr>
+      </table>
+    </section>
 
-  <h2>Wide Receivers Stats</h2>
-  <table class="table-style2">
-    <tr>
-      <th>Wide Receiver</th>
-      <th>GP, CAR, YDS, AVG, LNG, BIG, TD, YDS/G, FUM, LST, FD</th>
-    </tr>
-    <tr>
-      <td>Kareem Hunt</td>
-      <td>10, 86, 353, 4.1, 33, 1, 6, 35.3, 1, 0, 29</td>
-    </tr>
-    <tr>
-      <td>Isiah Pacheco</td>
-      <td>8, 78, 329, 4.2, 16, 0, 1, 41.1, 0, 0, 21</td>
-    </tr>
-  </table>
+    <section>
+      <h2>Offensive Player Stats</h2>
+      <table class="table-style2">
+        <tr>
+          <th>Player</th>
+          <th>GP</th>
+          <th>CAR</th>
+          <th>YDS</th>
+          <th>AVG</th>
+          <th>LNG</th>
+          <th>BIG</th>
+          <th>TD</th>
+          <th>YDS/G</th>
+          <th>FUM</th>
+          <th>LST</th>
+          <th>FD</th>
+        </tr>
+        <tr>
+          <td>Kareem Hunt</td>
+          <td>10</td>
+          <td>86</td>
+          <td>353</td>
+          <td>4.1</td>
+          <td>33</td>
+          <td>1</td>
+          <td>6</td>
+          <td>35.3</td>
+          <td>1</td>
+          <td>0</td>
+          <td>29</td>
+        </tr>
+        <tr>
+          <td>Isiah Pacheco</td>
+          <td>8</td>
+          <td>78</td>
+          <td>329</td>
+          <td>4.2</td>
+          <td>16</td>
+          <td>0</td>
+          <td>1</td>
+          <td>41.1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>21</td>
+        </tr>
+      </table>
+    </section>
 
-  <div class="mycontainer">
-    <div>
-      <h2> Current Ticket Prices</h2>
-      <ul class="list-style1">
-        <li>General Admissions Single Game $150-$200</li>
-        <li>Premium Seating Single Game $450-$700</li>
-        <li>Season Tickets Approx. $4K</li>
-      </ul>
+    <div class="mycontainer">
+      <div>
+        <h2>Current Ticket Prices</h2>
+        <ul class="list-style1">
+          <li>General Admissions Single Game $150-$200</li>
+          <li>Premium Seating Single Game $450-$700</li>
+          <li>Season Tickets Approx. $4K</li>
+        </ul>
+      </div>
+      <div>
+        <h2>My Favorite Drinks</h2>
+        <ul class="list-style2">
+          <li>Monster Energy Drink</li>
+          <li>Dr. Pepper</li>
+          <li>Liquid I.V.</li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <h2>My Favorite Drinks</h2>
-      <ul class="list-style2">
-        <li>Monster Energy Drink</li>
-        <li>Dr. Pepper</li>
-        <li>Liquid I.V.</li>
-      </ul>
-    </div>
-  </div>
 
-  <hr>
-  <section class="video">
-    <h2>Travis Kelce WARMING UP!!!</h2>
-    <video width="360" height="480" controls>
-      <source src="https://github.com/talbertson0695/Chiefs-Kingdom/blob/main/Download.mp4?raw=true" type="video/mp4">
-      Your Browser Does Not Support The Video Tag.
-    </video>
-  </section>
+    <hr>
+    <section class="video">
+      <h2>Travis Kelce WARMING UP!!!</h2>
+      <video width="360" height="480" controls>
+        <source src="https://github.com/talbertson0695/Chiefs-Kingdom/blob/main/Download.mp4?raw=true" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </section>
 
-  <h2>THE GOAT</h2>
-  <iframe src="https://www.youtube.com/embed/36SPZdmAgTo" width="853" height="480" style="border:none;"></iframe>
-</body>
-</html>
+    <section>
+      <h2>THE GOAT</h2>
+      <iframe src="https://www.youtube.com/embed/36SPZdmAgTo" width="853" height="480" style="border:none;" title="YouTube video"></iframe
