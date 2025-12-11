@@ -2,33 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Personal Webpage</title>
+  <title>Chiefs Kingdom Fan Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body {
-      background-image: url('https://github.com/talbertson0695/Chiefs-Kingdom/blob/main/football-field.png?raw=true');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      font-family: Arial, sans-serif;
-      color: yellow;
-      text-align: center;
-      margin: 0;
+    :root {
+      --gold: #FFB612;
+      --red: #E31837;
+      --black: #000000;
+      --dark-bg: rgba(0,0,0,0.6);
+      --light-bg: rgba(255,255,255,0.1);
     }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--gold);
+      background: url('https://github.com/talbertson0695/Chiefs-Kingdom/blob/main/football-field.png?raw=true') center/cover no-repeat fixed;
+      text-align: center;
+      scroll-behavior: smooth;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.light-mode {
+      background: url('https://github.com/talbertson0695/Chiefs-Kingdom/blob/main/football-field.png?raw=true') center/cover no-repeat fixed;
+      color: var(--red);
+    }
+
+    a { text-decoration: none; color: var(--gold); }
+    a:hover { color: orange; }
+    h1, h2 { text-shadow: 2px 2px 6px black; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: var(--dark-bg);
+      padding: 10px 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    nav a { color: var(--gold); font-weight: bold; transition: color 0.3s; }
+    nav a:hover { color: orange; }
 
     header {
       position: relative;
-      background-image: url('https://github.com/talbertson0695/Chiefs-Kingdom/blob/main/IMG_0482.JPG?raw=true');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      color: gold;
-      font-weight: bold;
-      text-align: center;
+      background: url('https://github.com/talbertson0695/Chiefs-Kingdom/blob/main/IMG_0482.JPG?raw=true') center/cover no-repeat;
+      color: var(--gold);
       padding: 60px 20px;
     }
-
     header::before {
       content: "";
       position: absolute;
@@ -36,113 +59,103 @@
       background: rgba(0,0,0,0.4);
     }
     header * { position: relative; }
-
-    h1, h2 {
-      color: gold;
-      text-shadow: 2px 2px 6px black;
-      margin: 0.5rem 0;
-    }
-
-    p { font-size: 18px; }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 50%;
-      border: 3px solid gold;
-      margin-top: 10px;
-    }
-
-    table {
-      width: 90%;
-      margin: 20px auto;
-      border-collapse: collapse;
-      border: 2px solid gold;
-      background: rgba(0,0,0,0.5);
-    }
-
-    th, td {
-      border: 1px solid gold;
-      padding: 10px;
-      text-align: center;
-      color: yellow;
-    }
-
-    .table-style1 th { background-color: red; color: white; }
-    .table-style2 th { background-color: black; color: gold; }
-
-    table tr:hover {
-      background-color: rgba(255, 215, 0, 0.3);
-      transition: background-color 0.3s ease;
-    }
-
-    .about {
-      width: 80%;
-      margin: 20px auto;
-      text-align: left;
+    pre {
       background: rgba(0,0,0,0.5);
       padding: 12px;
       border-radius: 8px;
+      display: inline-block;
+      text-align: left;
+      margin: 10px 0;
+    }
+
+    .button-transition {
+      display: inline-block;
+      background-color: var(--gold);
+      color: black;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-weight: bold;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+    }
+    .button-transition:hover { background-color: orange; color: black; }
+
+    main { padding: 20px 10px; }
+    section {
+      background: linear-gradient(var(--dark-bg), rgba(0,0,0,0.7));
+      border-radius: 12px;
+      padding: 16px;
+      margin: 20px auto;
+      max-width: 900px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    section:hover { transform: scale(1.01); box-shadow: 0 12px 25px rgba(255,215,0,0.5); }
+
+    .about { text-align: left; }
+    img { max-width: 100%; height: auto; border-radius: 50%; border: 3px solid var(--gold); }
+
+    .table-container { overflow-x: auto; margin: 20px 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--light-bg);
+      color: var(--gold);
+      cursor: pointer;
+    }
+    th, td { padding: 10px; border: 1px solid var(--gold); text-align: center; position: relative; }
+    th:hover { background-color: rgba(255,215,0,0.3); }
+    .table-style1 th { background-color: red; color: white; }
+    .table-style2 th { background-color: black; color: var(--gold); }
+    tr:hover { background-color: rgba(255,215,0,0.3); transition: background-color 0.3s; }
+
+    th[data-tooltip]:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--red);
+      color: var(--gold);
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-size: 12px;
+      opacity: 0.9;
+      pointer-events: none;
     }
 
     .mycontainer {
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
-      width: 80%;
-      margin: 0 auto 20px;
-      align-items: flex-start;
+      justify-content: center;
     }
-
     .mycontainer > div {
-      flex: 1 1 280px;
-      background: rgba(0,0,0,0.5);
-      border: 2px solid gold;
-      border-radius: 8px;
-      padding: 12px 16px;
+      flex: 1 1 250px;
+      border: 2px solid var(--gold);
+      border-radius: 12px;
+      padding: 16px;
+      background: var(--light-bg);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
+    .mycontainer > div:hover { transform: scale(1.03); box-shadow: 0 8px 20px rgba(255,215,0,0.6); }
 
-    .video {
-      width: 80%;
-      margin: 20px auto;
-      text-align: center;
-      border: 3px solid green;
-      background: rgba(0,0,0,0.5);
-      padding: 12px;
-      border-radius: 8px;
+    .videos { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 20px; justify-items: center; }
+    .video video {
+      width: 100%;
+      max-width: 360px;
+      height: 240px;
+      border: 4px solid var(--gold);
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
+      object-fit: cover;
     }
+    .video video:hover { transform: scale(1.05); box-shadow: 0 12px 30px rgba(255, 215, 0, 0.8); }
 
-    .list-style1, .list-style2 {
-      color: gold;
-      text-align: left;
-      margin: 12px 0;
-      padding-left: 20px;
-    }
-
-    .list-style1 { list-style-type: square; }
-    .list-style2 { list-style-type: circle; }
-
-    .button-transition {
-      display: inline-block;
-      background-color: gold;
-      color: black;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      border-radius: 4px;
-    }
-
-    /* Media elements responsive */
-    video, iframe {
-      max-width: 100%;
-      height: auto;
-    }
-
-    /* Chiefs-themed audio button */
     #playButton {
-      background-color: #E31837; /* Chiefs red */
-      color: #FFB612;           /* Chiefs gold */
+      background-color: var(--red);
+      color: var(--gold);
       font-weight: bold;
       border: none;
       padding: 12px 24px;
@@ -153,9 +166,56 @@
       margin-top: 20px;
     }
     #playButton:hover { background-color: #B11226; }
+
+    #themeToggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 8px 12px;
+      font-weight: bold;
+      border-radius: 8px;
+      background: var(--gold);
+      color: black;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    #backTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      background: var(--gold);
+      color: black;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    @media (max-width: 768px) {
+      .mycontainer, .videos { flex-direction: column; }
+      pre { font-size: 14px; }
+      nav { flex-direction: column; gap: 10px; }
+    }
+
+    hr { border: 1px solid var(--gold); margin: 40px 0; }
   </style>
 </head>
 <body>
+
+  <button id="themeToggle">Toggle Light/Dark</button>
+  <button id="backTop">⬆ Top</button>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#qb">QB Stats</a>
+    <a href="#offense">Offensive Stats</a>
+    <a href="#info">Info Boxes</a>
+    <a href="#videos">Videos</a>
+    <a href="#audio">Red Kingdom</a>
+  </nav>
+
   <header>
     <h1>Welcome To Chiefs Kingdom</h1>
     <p>Want some updated stats?</p>
@@ -164,70 +224,57 @@ Name: Trey Albertson
 Age: 30
 Location: Kansas City, MO
     </pre>
-    <a href="https://www.espn.com/nfl/team/_/name/kc/kansas-city-chiefs" target="_blank" rel="noopener noreferrer" class="button-transition">ESPN</a>
+    <a href="https://www.espn.com/nfl/team/_/name/kc/kansas-city-chiefs" target="_blank" class="button-transition">ESPN</a>
   </header>
 
   <main>
-    <section class="about">
-      <p>Check out my favorite website:
-        <a href="https://www.chiefs.com/thekingdom/" target="_blank">The Kingdom</a>
-      </p>
-      <p>
-        <a href="mailto:t.albertson0695@gmail.com" target="_blank">Contact Me</a>
-      </p>
+    <section id="about" class="about">
+      <p>Check out my favorite website: <a href="https://www.chiefs.com/thekingdom/" target="_blank">The Kingdom</a></p>
+      <p><a href="mailto:t.albertson0695@gmail.com">Contact Me</a></p>
       <a href="https://github.com/settings/profile" target="_blank">
         <img src="https://github.com/talbertson0695/Chiefs-Kingdom/blob/main/IMG_0455.JPG?raw=true" alt="Trey Albertson profile photo" title="Github Profile">
       </a>
     </section>
 
-    <hr>
-    <section>
+    <section id="qb">
       <h2>QB Stats</h2>
-      <table class="table-style1">
-        <tr>
-          <th>Quarterback</th><th>Season</th><th>YDS</th><th>CMP%</th><th>TD</th><th>INT</th><th>QBR</th>
-        </tr>
-        <tr>
-          <td>Patrick Mahomes</td><td>2025</td><td>3,398</td><td>63.1%</td><td>22</td><td>10</td><td>69.4</td>
-        </tr>
-        <tr>
-          <td>Patrick Mahomes</td><td>2024</td><td>3928</td><td>67.5%</td><td>26</td><td>11</td><td>99.8</td>
-        </tr>
-      </table>
+      <div class="table-container">
+        <table class="table-style1" id="qbTable">
+          <tr>
+            <th data-tooltip="Quarterback Name">Quarterback</th>
+            <th data-tooltip="Season Year">Season</th>
+            <th data-tooltip="Passing Yards">YDS</th>
+            <th data-tooltip="Completion Percentage">CMP%</th>
+            <th data-tooltip="Touchdowns">TD</th>
+            <th data-tooltip="Interceptions">INT</th>
+            <th data-tooltip="Quarterback Rating">QBR</th>
+          </tr>
+          <tr><td>Patrick Mahomes</td><td>2025</td><td>3,398</td><td>63.1%</td><td>22</td><td>10</td><td>69.4</td></tr>
+          <tr><td>Patrick Mahomes</td><td>2024</td><td>3,928</td><td>67.5%</td><td>26</td><td>11</td><td>99.8</td></tr>
+        </table>
+      </div>
     </section>
 
-    <section>
+    <section id="offense">
       <h2>Offensive Player Stats</h2>
-      <table class="table-style2">
-        <tr>
-          <th>Player</th><th>GP</th><th>CAR</th><th>YDS</th><th>AVG</th><th>LNG</th><th>BIG</th>
-          <th>TD</th><th>YDS/G</th><th>FUM</th><th>LST</th><th>FD</th>
-        </tr>
-        <tr>
-          <td>Kareem Hunt</td><td>10</td><td>86</td><td>353</td><td>4.1</td><td>33</td><td>1</td>
-          <td>6</td><td>35.3</td><td>1</td><td>0</td><td>29</td>
-        </tr>
-        <tr>
-          <td>Isiah Pacheco</td><td>8</td><td>78</td><td>329</td><td>4.2</td><td>16</td><td>0</td>
-          <td>1</td><td>41.1</td><td>0</td><td>0</td><td>21</td>
-        </tr>
-        <!-- New rows added below -->
-        <tr>
-          <td>Rashee Rice</td><td>9</td><td>—</td><td>512</td><td>—</td><td>56</td><td>3</td>
-          <td>4</td><td>56.9</td><td>0</td><td>0</td><td>34</td>
-        </tr>
-        <tr>
-          <td>Marquez Valdes-Scantling</td><td>10</td><td>—</td><td>287</td><td>—</td><td>42</td><td>2</td>
-          <td>2</td><td>28.7</td><td>0</td><td>0</td><td>12</td>
-        </tr>
-        <tr>
-          <td>Kadarius Toney</td><td>7</td><td>—</td><td>198</td><td>—</td><td>33</td><td>1</td>
-          <td>1</td><td>28.3</td><td>0</td><td>0</td><td>9</td>
-        </tr>
-      </table>
+      <div class="table-container">
+        <table class="table-style2" id="offenseTable">
+          <tr>
+            <th data-tooltip="Player Name">Player</th><th>GP</th><th>CAR</th><th>YDS</th><th>AVG</th><th>LNG</th><th>TD</th><th>REC</th><th>REC YDS</th><th>REC TD</th>
+          </tr>
+          <tr><td>Kareem Hunt (RB)</td><td>13</td><td>142</td><td>545</td><td>3.8</td><td>33</td><td>8</td><td>14</td><td>114</td><td>1</td></tr>
+          <tr><td>Isiah Pacheco (RB)</td><td>10</td><td>90</td><td>375</td><td>4.2</td><td>16</td><td>1</td><td>13</td><td>60</td><td>1</td></tr>
+          <tr><td>Patrick Mahomes (QB)</td><td>13</td><td>62</td><td>407</td><td>6.6</td><td>22</td><td>4</td><td>1</td><td>-10</td><td>0</td></tr>
+          <tr><td>Rashee Rice (WR)</td><td>7</td><td>5</td><td>20</td><td>4.0</td><td>7</td><td>1</td><td>46</td><td>520</td><td>5</td></tr>
+          <tr><td>Marquise Brown (WR)</td><td>13</td><td>—</td><td>—</td><td>—</td><td>49</td><td>5</td><td>42</td><td>494</td><td>5</td></tr>
+          <tr><td>Xavier Worthy (WR)</td><td>13</td><td>9</td><td>86</td><td>9.6</td><td>35</td><td>0</td><td>38</td><td>456</td><td>1</td></tr>
+          <tr><td>JuJu Smith‑Schuster (WR)</td><td>13</td><td>—</td><td>—</td><td>—</td><td>30</td><td>1</td><td>27</td><td>304</td><td>1</td></tr>
+          <tr><td>Tyquan Thornton (WR)</td><td>13</td><td>—</td><td>—</td><td>—</td><td>61</td><td>3</td><td>17</td><td>391</td><td>3</td></tr>
+        </table>
+      </div>
     </section>
 
-    <div class="mycontainer">
+    <section id="info" class="mycontainer">
       <div>
         <h2>Current Ticket Prices</h2>
         <ul class="list-style1">
@@ -252,55 +299,82 @@ Location: Kansas City, MO
           <li><strong>Made In KC</strong></li>
         </ul>
       </div>
+    </section>
+
+    <hr>
+
+    <div id="videos" class="videos">
+      <section class="video">
+        <h2>Travis Kelce WARMING UP!!!</h2>
+        <video controls>
+          <source src="https://github.com/talbertson0695/Chiefs-Kingdom/blob/main/Download.mp4?raw=true" type="video/mp4">
+        </video>
+        <p style="color:var(--gold); font-weight:bold;">Travis Kelce</p>
+      </section>
+
+      <section class="video">
+        <h2>THE GOAT</h2>
+        <video controls>
+          <source src="https://talbertson0695.github.io/Chiefs-Kingdom/videoplayback.mp4" type="video/mp4">
+        </video>
+        <p style="color:var(--gold); font-weight:bold;">THE GOAT</p>
+      </section>
     </div>
 
     <hr>
-    <section class="video">
-      <h2>Travis Kelce WARMING UP!!!</h2>
-      <video width="360" height="480" controls>
-        <source src="https://github.com/talbertson0695/Chiefs-Kingdom/blob/main/Download.mp4?raw=true" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </section>
- <section class="video">
-  <h2>THE GOAT</h2>
-  <video controls width="853" height="480">
-    <source src="https://talbertson0695.github.io/Chiefs-Kingdom/videoplayback.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</section>
- <hr>
-    <section>
+
+    <section id="audio">
       <h2>Red Kingdom Anthem</h2>
       <audio id="redKingdom" preload="auto">
         <source src="https://talbertson0695.github.io/Chiefs-Kingdom/Tech%20N9ne%20-%20Red%20Kingdom%20%20Official%20Audio.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
       </audio>
       <div>
         <button id="playButton">▶ Play Red Kingdom</button>
+        <input type="range" id="volumeControl" min="0" max="1" step="0.05" value="1">
       </div>
     </section>
   </main>
 
+  <footer style="text-align:center; padding:10px; background:var(--dark-bg); color:var(--gold);">
+    <p>© 2025 Chiefs Kingdom Fan Page | <a href="https://www.chiefs.com/" target="_blank">Visit Chiefs.com</a></p>
+    <img src="https://upload.wikimedia.org/wikipedia/en/2/26/Kansas_City_Chiefs_logo.svg" alt="Chiefs Logo" width="50">
+  </footer>
+
   <script>
-    // Chiefs-themed play/pause button for Red Kingdom
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => document.body.classList.toggle('light-mode'));
+
+    // Back to Top
+    const backTop = document.getElementById('backTop');
+    backTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+    // Audio Button & Volume
     const audio = document.getElementById('redKingdom');
     const button = document.getElementById('playButton');
-
+    const volumeControl = document.getElementById('volumeControl');
     button.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play();
-        button.textContent = '⏸ Pause Red Kingdom';
-      } else {
-        audio.pause();
-        button.textContent = '▶ Play Red Kingdom';
-      }
+      if(audio.paused){ audio.play(); button.textContent='⏸ Pause Red Kingdom'; }
+      else { audio.pause(); button.textContent='▶ Play Red Kingdom'; }
     });
+    volumeControl.addEventListener('input', () => audio.volume = volumeControl.value);
 
-    // Reset button text when audio ends
-    audio.addEventListener('ended', () => {
-      button.textContent = '▶ Play Red Kingdom';
+    // Sortable Tables
+    document.querySelectorAll('table').forEach(table => {
+      table.querySelectorAll('th').forEach((th,i) => {
+        th.addEventListener('click', () => {
+          const rows = Array.from(table.rows).slice(1);
+          const asc = !th.asc; th.asc = asc;
+          rows.sort((a,b) => {
+            const aVal = a.cells[i].innerText.replace(/,/g,'');
+            const bVal = b.cells[i].innerText.replace(/,/g,'');
+            return isNaN(aVal) ? aVal.localeCompare(bVal) : asc ? aVal-bVal : bVal-aVal;
+          });
+          rows.forEach(row => table.appendChild(row));
+        });
+      });
     });
   </script>
 </body>
 </html>
+
